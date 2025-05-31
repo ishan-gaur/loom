@@ -4,8 +4,7 @@ Handles Claude API integration and tool calling capabilities
 """
 
 import os
-import json
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from anthropic import Anthropic
 from dotenv import load_dotenv
 from editor import Editor
@@ -95,26 +94,5 @@ class LLMAgent:
             return self.editor.write_content(args["content"])
         elif tool_name == "show_note_to_user":
             return self.editor.show_note(args["message"])
-
         else:
             return f"Unknown tool: {tool_name}"
-    
-
-
-
-if __name__ == "__main__":
-    # Test with sample input
-    agent = LLMAgent()
-    
-    try:
-        with open("sample_input.txt", "r") as f:
-            sample_text = f.read().strip()
-        
-        print("🎯 Testing LLM Agent with sample input...")
-        agent.process_text(sample_text)
-        print("✅ Test completed!")
-        
-    except FileNotFoundError:
-        print("❌ sample_input.txt not found")
-    except Exception as e:
-        print(f"❌ Test failed: {e}")
