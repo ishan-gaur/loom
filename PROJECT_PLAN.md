@@ -41,3 +41,4 @@ A desktop application where:
 - Output display: write Anthropic response to file in current folder
   - User opens file in TextEdit on split screen next to Python terminal
   - Real-time viewing of generated content
+- First run: Whisper model downloads automatically, notify user when ready to record
