@@ -1,5 +1,7 @@
 # Development Context
 
+Purpose: maintain conversation continuity between sessions
+
 ## Working Style
 - Incremental changes, not large rewrites
 - Allow course correction without waiting for long generations
@@ -10,5 +12,4 @@
 - Constraint: user understands artifacts without any keystrokes
 
 ## Context File
-- Purpose: maintain conversation continuity between sessions
 - Update as needed, keep small, push all changes to git
