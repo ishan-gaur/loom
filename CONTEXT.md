@@ -9,3 +9,7 @@
 - Goal: uncover holes in STT, TTS, and agent systems
 - Constraint: users understand their artifacts without typing any keystrokes
 - All interactions must be voice-only
+
+## Context File Updates
+- Add information as required for development
+- Keep total file size small
