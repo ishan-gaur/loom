@@ -3,16 +3,9 @@
 ## Working Style
 - Make incremental changes, not large rewrites
 - Allow course correction without waiting for long generations
-- Ask for direction when ambiguous
 
 ## Loom Project
-- Voice-first design principles
-- Document limitations as discovered
-- Modular architecture for component swapping
-- Local processing preferred over cloud
-
-## Code Standards
-- Clear variable names
-- Error handling for voice failures
-- Cross-platform compatibility
-- Performance optimization for voice latency
+- Desktop application for voice-based text editing with LLM collaboration
+- Goal: uncover holes in STT, TTS, and agent systems
+- Constraint: users understand their artifacts without typing any keystrokes
+- All interactions must be voice-only
