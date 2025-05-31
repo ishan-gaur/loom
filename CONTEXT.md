@@ -1,8 +1,7 @@
 # Development Context
 
-Purpose: maintain conversation continuity between sessions
-
 ## Context File
+Purpose: maintain conversation continuity between sessions
 - Update as needed, keep small, push all changes to git
 
 ## Working Style
