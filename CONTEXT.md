@@ -17,3 +17,4 @@
 - Desktop app: voice-only text editing with LLM collaboration
 - Goal: uncover STT/TTS/agent system limitations
 - Constraint: user understands artifacts without any keystrokes
+

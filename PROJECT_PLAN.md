@@ -8,6 +8,22 @@ A desktop application where:
 - Users can produce complete, understood artifacts without any keyboard input
 - We stress-test current voice and AI technologies to find their breaking points
 
+## Architecture Decisions
+
+### Three Module Design
+- User Input Module: Audio capture + Whisper transcription
+- LLM Agent Module: Claude with tool calling capabilities  
+- Application State Module: File writing + user notifications
+
+### Tool Calling Design (Prototype)
+- write_to_file(content): rewrites entire file with new content
+- show_note_to_user(message): displays in terminal alongside TextEdit artifact
+
+### Technical Stack
+- Python for prototype (familiar, good for ML models)
+- Future: Rust backend, JS frontend, Python for ML models
+- Audio recording in separate thread to keep main thread responsive
+
 ## Basic Design
 
 ### Audio Processing Pipeline
