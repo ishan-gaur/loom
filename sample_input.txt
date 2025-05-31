@@ -1,0 +1,1 @@
+Write an opening paragraph for my blog post about diffusion models, summarizing the development of the field from early noise-based generative methods to modern text-to-image systems like DALL-E and Stable Diffusion
