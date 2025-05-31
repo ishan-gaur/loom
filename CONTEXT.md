@@ -2,6 +2,9 @@
 
 Purpose: maintain conversation continuity between sessions
 
+## Context File
+- Update as needed, keep small, push all changes to git
+
 ## Working Style
 - Incremental changes, not large rewrites
 - Allow course correction without waiting for long generations
@@ -10,6 +13,3 @@ Purpose: maintain conversation continuity between sessions
 - Desktop app: voice-only text editing with LLM collaboration
 - Goal: uncover STT/TTS/agent system limitations
 - Constraint: user understands artifacts without any keystrokes
-
-## Context File
-- Update as needed, keep small, push all changes to git
