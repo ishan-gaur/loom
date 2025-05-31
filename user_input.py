@@ -21,17 +21,20 @@ class UserInput:
         
         # Initialize audio and Whisper
         self.audio = pyaudio.PyAudio()
-        self.whisper_model = whisper.load_model("small.en")
+        print("🔄 Loading Whisper model...")
+        self.whisper_model = whisper.load_model("base.en")
+        print("✅ Whisper model loaded and ready!")
         
         # Recording state
         self.stop_event = threading.Event()
+        self.stop_event.set()  # Initially not recording
         self.frames = []
         self.stream = None
         self.record_thread = None
     
     def start_recording(self) -> None:
         """Start audio recording in separate thread"""
-        if not self.stop_event.is_set():
+        if self.record_thread and self.record_thread.is_alive():
             return
             
         self.stop_event.clear()
@@ -63,7 +66,7 @@ class UserInput:
     
     def stop_recording(self) -> Optional[str]:
         """Stop recording and return transcribed text"""
-        if self.stop_event.is_set():
+        if self.stop_event.is_set() or not self.frames:
             return None
             
         self.stop_event.set()
@@ -87,6 +90,11 @@ class UserInput:
                 wf.setsampwidth(self.audio.get_sample_size(self.FORMAT))
                 wf.setframerate(self.RATE)
                 wf.writeframes(b''.join(self.frames))
+            
+            # Check if we actually recorded anything
+            if len(self.frames) == 0:
+                print("🔇 No audio recorded")
+                return None
             
             # Transcribe with Whisper
             result = self.whisper_model.transcribe(temp_filename)
@@ -114,35 +122,47 @@ class UserInput:
         self.audio.terminate()
 
 
-if __name__ == "__main__":
-    from pynput import keyboard
-    
-    print("🎙️  User Input Test")
-    print("Hold SPACEBAR to record, release to transcribe")
-    print("Press ESC to quit")
+def fallback_input_mode(user_input):
+    """Simple terminal-based recording mode"""
+    print("📱 Terminal Mode: Press ENTER to start/stop recording")
+    print("Type 'quit' to exit")
     print()
     
-    user_input = UserInput()
+    recording = False
     
-    def on_press(key):
-        if key == keyboard.Key.space:
-            user_input.start_recording()
-    
-    def on_release(key):
-        if key == keyboard.Key.space:
+    while True:
+        if not recording:
+            command = input("Press ENTER to start recording (or 'quit'): ").strip().lower()
+            
+            if command == 'quit':
+                print("👋 Exiting...")
+                break
+            
+            if command == '':  # User pressed ENTER
+                print("🔴 Recording... Press ENTER to stop")
+                user_input.start_recording()
+                recording = True
+        else:
+            input()  # Wait for ENTER to stop
             text = user_input.stop_recording()
+            recording = False
+            
             if text:
                 print(f"✅ Transcribed: {text}")
             else:
                 print("❌ No speech detected")
-        elif key == keyboard.Key.esc:
-            print("👋 Exiting...")
-            return False
+            print()
+
+
+
+if __name__ == "__main__":
+    print("🎙️  User Input Test")
+    
+    user_input = UserInput()
     
     try:
-        with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-            listener.join()
+        fallback_input_mode(user_input)
     except KeyboardInterrupt:
-        pass
+        print("\n👋 Exiting...")
     finally:
         user_input.cleanup()
