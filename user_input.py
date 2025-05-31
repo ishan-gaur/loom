@@ -22,7 +22,7 @@ class UserInput:
         # Initialize audio and Whisper
         self.audio = pyaudio.PyAudio()
         print("🔄 Loading Whisper model...")
-        self.whisper_model = whisper.load_model("base.en")
+        self.whisper_model = whisper.load_model("small.en")
         print("✅ Whisper model loaded and ready!")
         
         # Recording state

@@ -11,10 +11,16 @@ brew install portaudio
 
 ### Install Dependencies
 ```bash
-pip install pyaudio whisper-openai anthropic pynput python-dotenv
+pip install pyaudio whisper-openai anthropic pynput python-dotenv transformers huggingface-hub[hf_xet]
 echo "ANTHROPIC_API_KEY=your_api_key_here" > .env
+echo "HF_TOKEN=your_hugging_face_token_here" >> .env
 python loom.py
 ```
+
+### Hugging Face Setup
+1. Go to https://huggingface.co/settings/tokens
+2. Create a new token with "Read" permissions
+3. Add it to your `.env` file as `HF_TOKEN=your_token_here`
 
 ### macOS Accessibility Permissions
 If you see this error:

@@ -1,6 +1,6 @@
 Date: 2025-05-30
 First commit: 8fd601fc3632
-Last commit: a05787b27
+Last commit: 82b4e0e4ae24
 Summary: Defines project and has Claude setup a system to cache context about the project and its own rules to file so they can be retained across Zed threads.
 # Voice Only LLM Collaborative Text Editor
 
